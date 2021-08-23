@@ -1,42 +1,22 @@
 <div class="container">
 <%= @user.username %>'s Plants:
-  <div class="row">
-    <div class="col-3">
-    </div>
-    <% if @user.plants.any? %>
-      <% @user.plants.order('name').each do |plant| %>
-        <div class="col">
-          <div class="card">
-            <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" heigth="auto" alt="">
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
-              <p class="card-text"></p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p>You have no plants. Would you like to <%= link_to "Add Plant", new_plant_path %>?<p>
-    <% end%>
-  </div>
-  </div>
 
   <div class="row">
+    <div class="sidebar">
+    </div>
     <% @plants.each do |plant| %>
       <div class="col-md-2 mb-4">
         <div class="card">
-          <img class="card-img-top" src="<%= Faker::Avatar.image %>" width ="150" heigth="auto" alt="">
-            <div class="card-body">
+        <% if @album.album_cover_photo.attached? %>
+          <%= image_tag @album.album_cover_photo %>
+        <% else %>
+          
+        <% end %>
+        <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" heigth="auto" alt="">
+        <div class="card-body" style="height: 100px">
               <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
-              <p class="card-text">$ <%= plant.cost %>
-              <br>
-              Country of Origin: <%= plant.country_of_origin %>
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm">
-              <%= link_to "See more", plant_path(plant) %>
-              </a>
-              <a href="#" class="btn btn-outline-secondary btn-sm">
-              <i class="far fa-heart"></i></a>
+              <p class="card-text"></p>
+  
             </div>
         </div>
       </div>

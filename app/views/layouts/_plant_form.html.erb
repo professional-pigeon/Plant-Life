@@ -2,14 +2,17 @@
   <%= form_for [@plant] do |f| %>
     <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
     <%# <%= f.label :name, class: "formLabel" %>
-    <br><br>
+    <br>
+    <br>
     <%= f.label :category, class: "formLabel" %>
     <%= f.select :category, ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb'] %>
-    <br><br>
-    <%= f.number_field :health, placeholder: 'Health' %>
+    <br>
+    <br>
+    <%= f.select :health, ["Dismal", "Bad", "Okay", "Good", "Excellent"] %>
     <%# <%= f.label :health, class: "formLabel" %>
     <br>
     <br>
+    <%= f.file_field :photo %>
     <%= f.submit %>
   <% end %>
 </h2>

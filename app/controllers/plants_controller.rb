@@ -22,6 +22,7 @@ class PlantsController < ApplicationController
   def create
     @user = current_user
     @plant = @user.plants.new(plant_params)
+    @plant.photo.attach(params[:plant][:photo])
     if @plant.save
       flash[:notice] = "Plant added!"
       redirect_to plants_path
@@ -45,6 +46,7 @@ class PlantsController < ApplicationController
   def update
     @plant = Plant.find(params[:id])
     if @plant.update(plant_params)
+      @plant.photo.attach(params[:plant][:photo])
       flash[:notice] = "Plant updated!"
       redirect_to plant_path
     else
