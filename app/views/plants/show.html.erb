@@ -3,7 +3,7 @@
   <%= link_to "Edit Plant", edit_plant_path %>
   <%= link_to "Delete Plant", plant_path(@plant), :data => {:confirm => "You sure?", :method => "delete"} %>
   <%= link_to "Back to Plants", plants_path %> 
-</div>
+
 
 <br>
     <% if Time.now.to_i > (@plant.health_next_update + 120) %>
@@ -22,3 +22,5 @@
       <br>
       <p>Right now it's looking like <%= @plant.health %>
     <% end %> 
+
+</div>

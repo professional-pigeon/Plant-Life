@@ -3,7 +3,6 @@
   <div class="row">
     <div class="col-3">
     </div>
-    <div
     <% if @user.plants.any? %>
       <% @user.plants.order('name').each do |plant| %>
         <div class="col">
@@ -20,5 +19,28 @@
       <p>You have no plants. Would you like to <%= link_to "Add Plant", new_plant_path %>?<p>
     <% end%>
   </div>
-</div>
+  </div>
+
+  <div class="row">
+    <% @plants.each do |plant| %>
+      <div class="col-md-2 mb-4">
+        <div class="card">
+          <img class="card-img-top" src="<%= Faker::Avatar.image %>" width ="150" heigth="auto" alt="">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
+              <p class="card-text">$ <%= plant.cost %>
+              <br>
+              Country of Origin: <%= plant.country_of_origin %>
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">
+              <%= link_to "See more", plant_path(plant) %>
+              </a>
+              <a href="#" class="btn btn-outline-secondary btn-sm">
+              <i class="far fa-heart"></i></a>
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   
