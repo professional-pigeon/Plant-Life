@@ -17,7 +17,9 @@ ActiveRecord::Base.connection.reset_pk_sequence!(Plant.table_name)
 end
 
 50.times do |index|
-  Plant.create!(name: Faker::Food.vegetables, category: '', health: Faker::Number.within(range: 1..5), user_id: Faker::Number.within(range: 1..5) )
+  categories = ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb']
+  health_array = ["Dismal", "Bad", "Okay", "Good", "Excellent"]
+  Plant.create!(name: Faker::Food.vegetables, category: categories.sample, health: health_array.sample, user_id: Faker::Number.within(range: 1..5), health_next_update: Time.now.to_i )
 end
 
-p "Created #{User.count} users and #{Plant.count} plants"
+p "Created #{User.count} users and #{Plant.count} plants."

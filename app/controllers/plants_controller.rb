@@ -1,55 +1,55 @@
 class PlantsController < ApplicationController
   before_action :authenticate_user!
-  # before_action except: [:new, :create, :show] do 
+  # before_action except: [:new, :create, :show] do
   #   unless is_user?
   #     flash[:alert] = 'You do not have access to my plants!'
   #       redirect_to plants_path
-  #     end 
-  #   end 
+  #     end
+  #   end
 
   def index
     @user = current_user
     @plants = @user.plants
     render :index
-  end 
+  end
 
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plant = @user.plants.new
     render :new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @plant = @user.reviews.new(plant_params)
-
+    @user = current_user
+    @plant = @user.plants.new(plant_params)
     if @plant.save
       flash[:notice] = "Plant added!"
-      redirect_to user_path(@user)
+      redirect_to plants_path
     else
       render :new
     end
   end
 
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plant = Plant.find(params[:id])
     render :show
   end
 
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user
     @plant = Plant.find(params[:id])
     render :edit
   end
 
   def update
     @plant = Plant.find(params[:id])
-    if @plant.update(review_params)
+    if @plant.update(plant_params)
       flash[:notice] = "Plant updated!"
-      redirect_to user_plants_path(@plant.user)
+      redirect_to plant_path
     else
-      @user = User.find(params[:user_id])
+      @user = current_user
+      flash[:notice] = "Update failed. Please try again"
       render :edit
     end
   end
@@ -58,11 +58,11 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.destroy
     flash[:notice] = "Plant deleted!"
-    redirect_to user_path(@plant.user)
+    redirect_to plants_path
   end
 
   private
   def plant_params
-    params.require(:plant).permit(:name, :category, :health)
+    params.require(:plant).permit(:name, :category, :health, :health_next_update)
   end
 end

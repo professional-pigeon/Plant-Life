@@ -1,10 +1,24 @@
 <div class="container">
-Your plants:
-
-
-<% if @user.plants.any? %>
-  <% @user.plants.each do |plant| %>
-    <%= plant %>
-    <% end %>
-<% end%>
+<%= @user.username %>'s Plants:
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div
+    <% if @user.plants.any? %>
+      <% @user.plants.order('name').each do |plant| %>
+        <div class="col">
+          <div class="card">
+            <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" heigth="auto" alt="">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>You have no plants. Would you like to <%= link_to "Add Plant", new_plant_path %>?<p>
+    <% end%>
+  </div>
 </div>
+  

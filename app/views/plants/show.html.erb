@@ -1,0 +1,24 @@
+<div class="container">
+  <p><%= @plant.name %>, <%= @plant.category %>, Health: <%= @plant.health %> <img src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{@plant.name}"])}" %>", width="200px"></p>
+  <%= link_to "Edit Plant", edit_plant_path %>
+  <%= link_to "Delete Plant", plant_path(@plant), :data => {:confirm => "You sure?", :method => "delete"} %>
+  <%= link_to "Back to Plants", plants_path %> 
+</div>
+
+<br>
+    <% if Time.now.to_i > (@plant.health_next_update + 120) %>
+      <%= form_for [@plant] do |f| %>
+        <p>How healthy is your plant looking this week<p>
+        <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
+        <%= f.radio_button :health, "Dismal" %> Dismal
+        <%= f.radio_button :health, "Bad" %> Bad
+        <%= f.radio_button :health, "Doing OK" %> Doing OK
+        <%= f.radio_button :health, "Good" %> Good
+        <%= f.radio_button :health, "Excellent" %> Excellent
+        <%= f.submit %>
+      <% end %>
+    <% else %>
+      <p> We'll ask you again next week for an update on your plant!</p>
+      <br>
+      <p>Right now it's looking like <%= @plant.health %>
+    <% end %> 

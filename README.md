@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Co-authored-by: Ben Pawlik <james.benjamin.pawlik@gmail.com>
+co-authored-by: Adrian Camacho <adriancamacho18@gmail.com>
+co-authored-by: Araceli Valdovinos <valdovinosaraceli50@gmail.com>
