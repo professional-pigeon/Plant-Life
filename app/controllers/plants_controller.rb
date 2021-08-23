@@ -46,7 +46,6 @@ class PlantsController < ApplicationController
   def update
     @plant = Plant.find(params[:id])
     if @plant.update(plant_params)
-      @plant.photo.attach(params[:plant][:photo])
       flash[:notice] = "Plant updated!"
       redirect_to plant_path
     else
@@ -65,6 +64,6 @@ class PlantsController < ApplicationController
 
   private
   def plant_params
-    params.require(:plant).permit(:name, :category, :health, :health_next_update)
+    params.require(:plant).permit(:name, :category, :health, :health_next_update, :photo)
   end
 end

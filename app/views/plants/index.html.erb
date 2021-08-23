@@ -1,26 +1,32 @@
 <div class="container">
-<%= @user.username %>'s Plants:
-
+  Welcome <%= @user.username %>!
+  <br>
   <div class="row">
-    <div class="sidebar">
+    <div class="col-3">
+      <div class="sidebar">
+        <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
+        <p>'How are your plant/'s'</p>
+      </div>
     </div>
-    <% @plants.each do |plant| %>
+    
+  
+    <% @plants.limit(4).each do |plant| %>
       <div class="col-md-2 mb-4">
         <div class="card">
-        <% if @album.album_cover_photo.attached? %>
-          <%= image_tag @album.album_cover_photo %>
-        <% else %>
-          
-        <% end %>
-        <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" heigth="auto" alt="">
-        <div class="card-body" style="height: 100px">
-              <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
-              <p class="card-text"></p>
-  
-            </div>
+          <% if plant.photo.attached? %>
+            <%= image_tag plant.photo %>
+          <% else %>
+            <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" height="auto" alt="">
+          <% end %>
+          <div class="card-body" style="height: 100px">
+            <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
+            <p class="card-text"></p>
+          </div>
         </div>
       </div>
     <% end %>
+   
+      
   </div>
-
-  
+  <h3><%= link_to 'Add Plant', 'plants/new' %></h3>
+</div>
