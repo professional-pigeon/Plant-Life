@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PlantLifeApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">Plants 4Ever</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <div style="margin-left:auto;">
+                  <% if current_user %>
+                    <span class="nav-link"><%= link_to current_user.email , '/users/edit' %> | <%= link_to "Sign out", '/users/sign_out', :method => :delete %>, About us (link to come), Your profile (link to come) </span>
+                  <% else %>
+                    <span class="nav-link"><%= link_to "Sign up", '/users/sign_up'%> | <%= link_to "Sign in", '/users/sign_in' %></span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      <%if flash[:alert] %>
+        <div class="alert alert-danger mt-3" role="alert">
+          <%= flash[:alert] %>
+        </div>
+      <%end%>
+      <%if flash[:notice] %>
+        <div class="alert alert-success mt-3" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <%end%>
+
+        <%= yield %>
+
+
+  </body>
+
+  <footer class="footer mt-auto py-3 bg-light0" id="sticky-footer">
+    <div class="container">
+      <span class="text-muted" style="display:flex">Made, with Love, by <a href="https://github.com/chonnessey">Adrian Camacho</a>, <a href="https://github.com/jbpawlik">Ben Pawlik</a>, <a href="https://github.com/professional-pigeon">Kyle Kay Perez</a> <a href="https://github.com/aracelivaldovinos"></span>
+    </div>
+  </footer>
+</html>

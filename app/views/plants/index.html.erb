@@ -1,0 +1,10 @@
+<div class="container">
+Your plants:
+
+
+<% if @user.plants.any? %>
+  <% @user.plants.each do |plant| %>
+    <%= plant %>
+    <% end %>
+<% end%>
+</div>
