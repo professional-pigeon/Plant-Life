@@ -1,0 +1,28 @@
+
+<p> These are the plants you need to water today </p>
+<p> Click the box when done </p>
+
+<%= month_calendar(events: @plants) do |date, plants| %>
+  <%= date %>
+  <% plants.each do |plant| %>
+  <div>
+    <%= plant.name %>
+  <div>
+  <% end %>
+<% end %>
+<ul>
+
+<% @plants.each do |plant| %>
+  <li> <%= plant.name %> and <%= plant.water_time %>
+  </li>
+  <% end %>
+</ul>
+
+<% @plants.each do |plant| %>
+  <% if Time.now > plant.water_time%>
+    <%= form_with url: "/plants/#{plant.id}/water_update", method: :post do |f| %>
+    <%= f.hidden_field :plant_id, value: plant.id %>
+    <%= f.submit "#{plant.name}", :plant_id => "%#{plant.id}" %>
+    <% end %>
+  <% end %>
+<% end %>

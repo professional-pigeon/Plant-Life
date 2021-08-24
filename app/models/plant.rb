@@ -17,4 +17,9 @@ class Plant < ApplicationRecord
     end
   end
 
+
+  def start_time
+    self.water_time
+  end
+
 end

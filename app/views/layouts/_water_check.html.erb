@@ -1,0 +1,13 @@
+<h3> These are the plants you need to water today </h3>
+<p> Click the box when done </p>
+<% @plants.each do |plant| %>
+  <% if Time.now < plant.water_time%>
+    <%= form_with url: "/plants/#{plant.id}/water_update", method: :post do |f| %>
+    <%= f.hidden_field :water_time, value: plant.wait_time %>
+    <%= f.submit "#{plant.name}" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+

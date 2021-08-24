@@ -1,20 +1,37 @@
-<div class="container">
-  <p>
-  <% if @plant.photo.attached? %>
-    <%= image_tag @plant.photo %>
-  <% else %>
-    <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{@plant.name}"])}" %>", width="200px" heigth="auto" alt="">
-  <% end %>
-  <%= @plant.name %>, <%= @plant.category %>, Health: <%= @plant.health %></p>
-  <%= @api_response %>
-  <%= link_to "Edit Plant", edit_plant_path %>
-  <%= link_to "Delete Plant", plant_path(@plant), :data => {:confirm => "You sure?", :method => "delete"} %>
-  <%= link_to "Back to Plants", plants_path %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <% if @plant.photo.attached? %>
+        <%= image_tag @plant.photo %>
+      <% else %>
+        <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{@plant.name}"])}" %>", width="200px" heigth="auto" alt="">
+      <% end %>
+    </div>
+    <div class="col-8">
+      <br>
+      <br>
+      <%= @plant.name %>
+      <br>
+      <br>
+      <%= @api_response['data'][0]['attributes']['binomial_name'] %>
+      <br>
+      <br>
+      Health: <%= @plant.health %>
+      <br>
+      <br>
+      <% if @api_response['data'][0]['attributes']['description'] != nil %>
+        <%= @api_response['data'][0]['attributes']['description'] %>
+      <% else %>
+        <p><%= @plant.name %> is a popular plant for novices and experts. It needs a little love and attention but will thrive under the proper conditions.</p>
+      <% end %>
+    </div>
+  </div>
+  <br>
   <br>
   <% if @plant.health_next_update?%>
     <% if Time.now.to_i > (@plant.health_next_update + 120) %>
       <%= form_for [@plant] do |f| %>
-        <p>How healthy is your plant looking this week<p>
+        <p>How healthy is your plant looking this week?<p>
         <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
         <%= f.radio_button :health, "Dismal" %> Dismal
         <%= f.radio_button :health, "Bad" %> Bad
@@ -30,7 +47,7 @@
     <% end %>
     <% else %>
       <%= form_for [@plant] do |f| %>
-        <p>How healthy is your plant looking this week<p>
+        <p>How healthy is your plant looking this week?<p>
         <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
         <%= f.radio_button :health, "Dismal" %> Dismal
         <%= f.radio_button :health, "Bad" %> Bad
@@ -40,4 +57,20 @@
         <%= f.submit %>
       <% end %>
   <%end%>
+  <div id="plant_graph">
+    <p>Your Plants' Health</p>
+    <%= bar_chart Plant.group(:name).where(id: @user.plants).group(:health).count, stacked: true %>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <%= link_to "Edit Plant", edit_plant_path %>
+    </div>
+    <div class="col-4">
+      <%= link_to "Delete Plant", plant_path(@plant), :data => {:confirm => "You sure?", :method => "delete"} %>
+    </div>
+    <div class="col-4">
+      <%= link_to "Back to Plants", plants_path %>
+    </div>
+  </div>
+  <br>
 </div>

@@ -10,7 +10,28 @@ class PlantsController < ApplicationController
   def index
     @user = current_user
     @plants = @user.plants
+
     render :index
+  end
+
+  def water
+    @user = current_user
+    @plants = @user.plants
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @meetings = @plants.where(water_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).first
+    render :water
+  end
+
+  def water_update
+    @plant = Plant.find(params[:plant_id].to_i)
+    if @plant.update({:water_time => @plant.wait_time})
+      flash[:notice] = "Plant watering updated! next date is #{@plant.water_time.month}-#{@plant.water_time.day}"
+      redirect_to plants_water_path
+    else
+      @user = current_user
+      flash[:notice] = "Update failed. Please try again"
+      redirect_to plants_water_path
+    end
   end
 
   def new
@@ -23,6 +44,7 @@ class PlantsController < ApplicationController
     @user = current_user
     @plant = @user.plants.new(plant_params)
     @plant.photo.attach(params[:plant][:photo])
+    @plant.wait_time #this adds the watering date
     if @plant.save
       flash[:notice] = "Plant added!"
       redirect_to plants_path
@@ -34,7 +56,7 @@ class PlantsController < ApplicationController
   def show
     @user = current_user
     @plant = Plant.find(params[:id])
-    @api_response = HTTParty.get("openfarm.cc/api/v1/crops/?filter=#{plant.name}")
+    @api_response = HTTParty.get("http://openfarm.cc/api/v1/crops/?filter=#{@plant.name}")
     render :show
   end
 

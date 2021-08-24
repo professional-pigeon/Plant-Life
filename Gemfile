@@ -37,10 +37,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.0.1'
-
 gem 'devise'
 gem 'faker'
 gem 'httparty'
+gem 'chartkick'
+gem 'groupdate'
+gem 'hightop'
+gem "simple_calendar", "~> 2.4"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

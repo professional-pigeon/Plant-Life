@@ -39,9 +39,10 @@
           <%= flash[:notice] %>
         </div>
       <%end%>
+      <%= yield :charts_js %>
       <%= yield %>
     </div>
-    <footer class="footer mt-auto py-3 bg-light0" id="sticky-footer">
+    <footer class="footer mt-auto py-3 bg-light0" id="sticky-footer" style="position: relative;">
       <div class="container">
         <span class="text-muted" style="display:flex">Made with Love by: <a href="https://github.com/chonnessey"> Adrian Camacho </a>| <a href="https://github.com/jbpawlik"> Ben Pawlik </a>| <a href="https://github.com/professional-pigeon"> Kyle Kay Perez </a>| <a href="https://github.com/aracelivaldovinos"> Araceli Valdovinos.</span>
       </div>

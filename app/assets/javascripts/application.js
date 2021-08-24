@@ -16,3 +16,9 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+//= require Chart.bundle
+//= require chartkick
+
+import "chartkick/chart.js";
+
+$('.collapseOne').collapse()
