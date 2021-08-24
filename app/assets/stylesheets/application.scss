@@ -71,7 +71,7 @@ body {
 }
 
 .col-8 {
-  text-align: center;
+  text-align: right;
 }
 
 content {
@@ -135,6 +135,10 @@ nav {
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.retro-container {
+  border-style: solid 2px black;
 }
 
 #scrollbar{

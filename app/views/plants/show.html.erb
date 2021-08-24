@@ -8,7 +8,7 @@
       <% end %>
     </div>
     <div class="col-8">
-      <h1><%= @plant.name %><strong></h1>
+      <h1><%= @plant.name.titleize %><strong></h1>
       <%= @api_response['data'][0]['attributes']['binomial_name'].downcase %>
       <br>
       <br>
