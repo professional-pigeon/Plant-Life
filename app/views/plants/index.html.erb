@@ -1,16 +1,28 @@
 <div class="container">
-  Welcome <%= @user.username %>!
-  <br>
   <div class="row">
-    <div class="col-3">
-      <div class="sidebar">
-        <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
-        <p>'How are your plant/'s'</p>
-      </div>
+    <div class="col-2">
+      "Welcome" <%= @user.username %>"!"
+      <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
+      <p>"How are your plant's doing?"</p>
     </div>
-    
+    <div class="col-6">
+      <% @plants.limit(4).each do |plant| %>
+        <div class="col-2">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header id">
+              </div>
+
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+
   
-    <% @plants.limit(4).each do |plant| %>
+    
       <div class="col-md-2 mb-4">
         <div class="card">
           <% if plant.photo.attached? %>

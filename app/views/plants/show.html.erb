@@ -6,6 +6,7 @@
     <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{@plant.name}"])}" %>", width="200px" heigth="auto" alt="">
   <% end %>
   <%= @plant.name %>, <%= @plant.category %>, Health: <%= @plant.health %></p>
+  <%= @api_response %>
   <%= link_to "Edit Plant", edit_plant_path %>
   <%= link_to "Delete Plant", plant_path(@plant), :data => {:confirm => "You sure?", :method => "delete"} %>
   <%= link_to "Back to Plants", plants_path %>

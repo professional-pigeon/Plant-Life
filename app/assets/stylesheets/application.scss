@@ -20,8 +20,10 @@ body {
   background-size:cover;
   background-repeat:no-repeat;
   background-position-y: bottom;
-  min-height: 100vh;
-  font-family: 'Besley', serif;
+  font-family: 'Besley', serif;  
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
 }
 
 .banner {
@@ -32,6 +34,10 @@ body {
   position: relative;
   margin-top: 0;
   padding-bottom: 10px;
+}
+
+content {
+  flex: 1 0 auto;
 }
 
 nav {
@@ -51,11 +57,14 @@ nav {
 
 footer {
   border-top: solid #716931 .25rem;
-  margin-top:auto;
+  margin-top: 1px;
   width: 100%;
   bottom: 0;
+  left: 0;
   position: absolute;
   align-items: center;
+  display: block;
+  flex-shrink: 0;
 }
 
 .card-body {
@@ -74,6 +83,7 @@ footer {
   height: 500px;    
   overflow-y: auto;   
   overflow-x: hidden; 
+  vertical-align: top;
 }
 
 .avatar {
@@ -83,5 +93,9 @@ footer {
   border-radius: 50%;
 }
 img {
-  max-width: 50%;
+  max-width: 50%
+}
+
+#home-container {
+  display: table;
 }

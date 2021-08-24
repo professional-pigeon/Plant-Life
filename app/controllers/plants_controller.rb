@@ -34,6 +34,7 @@ class PlantsController < ApplicationController
   def show
     @user = current_user
     @plant = Plant.find(params[:id])
+    @api_response = HTTParty.get("openfarm.cc/api/v1/crops/?filter=#{plant.name}")
     render :show
   end
 
@@ -64,6 +65,6 @@ class PlantsController < ApplicationController
 
   private
   def plant_params
-    params.require(:plant).permit(:name, :category, :health, :health_next_update, :photo)
+    params.require(:plant).permit(:name, :category, :health, :health_next_update, :photo, :water_time)
   end
 end
