@@ -1,111 +1,42 @@
-
-<div class="row">
-  <div class="col-md-4">
-    "Welcome <%= @user.username %>!"
-    <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
-    <p>"How are your plants doing?"</p>
-    <div class="calender">
-      <%= month_calendar do |date| %>
-        <%= date %>
-          <% end %>
-        </div>
-  </div>
-  <div class="col-md-8">
-    <div class="pb-3">
-        .col-md-8
-    </div>
-    <div class="row">
-      <div class="col-md-6">.col-md-6</div>
-      <div class="col-md-6">.col-md-6</div>
-    </div>
-  </div>
-</div>
-
-
-
 <div class="container">
   <div class="row">
-    <div class="col-md-6 sidebar">
-      "Welcome <%= @user.username %>!"
+    <div class="col-md-4">
+      Welcome <%= @user.username %>!
+      <br>
       <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
-      <p>"How are your plants doing?"</p>
-      <div class="calender">
-        <%= month_calendar do |date| %>
-          <%= date %>
-        <% end %>
-      </div>
+      <br>
+      <a href="../plants/tasks">Click here to see your tasks for the day</a>
+      
     </div>
 
-    <div class="col">
-    <% if @plants.any? %>
-    <% @plants.each_with_index do |plant, index| %>
-      <% if index === 0 %>
-        <div class="row">
+    <div class="col-md-8">
+      <div class="pb-3">
+        <p>"How are your plants doing?"</p>
+      </div>
+      <div class="row">
+        <% @plants.each do |plant|%>
           <div class="col-sm-3">
-            <div class="card m-1">
+            <div class="card">
               <% if plant.photo.attached? %>
                 <%= image_tag plant.photo %>
-              <%else %>
+              <% else %>
                 <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" height="auto" alt="">
               <% end %>
-              <div class="card-body" style="height: 100px">
-                <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
-                <p style="background-color: white" class="card-text">Testing</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% elsif index % 4 === 0 %>
-        </div>
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="card m-1">
-                <% if plant.photo.attached? %>
-                  <%= image_tag plant.photo %>
-                <% else %>
-                  <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" height="auto" alt="">
-                <% end %>
-                <div class="card-body" style="height: 100px">
-                  <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
-                  <p style="background-color: white" class="card-text">Testing</p>
-                </div>
-              </div>
-            </div>
-      <% else %>
-        <div class="col-sm-3">
-          <div class="card m-1">
-            <% if plant.photo.attached? %>
-              <%= image_tag plant.photo %>
-            <%else %>
-              <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" height="auto" alt="">
-            <% end %>
             <div class="card-body" style="height: 100px">
               <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
-              <p style="background-color: white" class="card-text">Testing</p>
+              <p class="card-text"></p>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% end %>
+      </div>
+        <% end %>
     </div>
-  <% else %>
-    <p>There are no plants yet.</p>
-  <% end %>
-  <h3><%= link_to 'Add Plant', 'plants/new' %></h3>
-    </div>
-    </div>
-    
-
-
-
-
-
-
-    </div>
+    <h3><%= link_to 'Add Plant', 'plants/new' %></h3>
   </div>
 </div>
 
 
+    
+    
 
 
 

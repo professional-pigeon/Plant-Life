@@ -4,11 +4,10 @@ class Plant < ApplicationRecord
   validates :photo, presence: true
   # scope :user, (param)-> { where('(user_id) like ?', "#{param}")}
   def wait_time
-    categories = ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb']
-    if self.category == 'Tree' || 'Fruit'
+    if self.category == 'Tree' || self.category == 'Fruit'
       time = Time.now.to_i + (86400 * 3)
       self.water_time = Time.strptime(time.to_s, '%s')
-    elsif self.category == 'Vegetable' || 'Herb'
+    elsif self.category == 'Vegetable' || self.category == 'Herb'
       time = Time.now.to_i + (86400 * 4)
       self.water_time = Time.strptime(time.to_s, '%s')
     else
@@ -16,7 +15,6 @@ class Plant < ApplicationRecord
       self.water_time = Time.strptime(time.to_s, '%s')
     end
   end
-
 
   def start_time
     self.water_time

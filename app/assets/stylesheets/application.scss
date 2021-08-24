@@ -16,12 +16,19 @@
 @import "bootstrap";
 @import "simple_calendar";
 
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 body {
-  background: #e9d397;
+  background: #eddbac;
   background-size:cover;
   background-repeat:no-repeat;
   background-position-y: bottom;
-  font-family: 'Besley', serif;  
+  font-family: 'Besley', serif;
   display: flex;
   min-height: 100%;
   flex-direction: column;
@@ -37,9 +44,61 @@ body {
   margin-top: 0;
   padding-bottom: 10px;
 }
+
+.calendar_heading {
+  align-content: center;
+}
+
+
+.card-body {
+  background: #716931;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.card-img-top {
+  width: 100%;
+  object-fit: cover;
+  max-width: 37vh;
+  max-height: 30vh;
+}
+
+.col-4 {
+  text-align: center;
+  img {
+    min-height: 100%;
+  }
+}
+
+.col-8 {
+  text-align: center;
+}
+
 content {
   flex: 1 0 auto;
 }
+
+footer {
+  border-top: solid #716931 .25rem;
+  margin-top: 1px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  align-items: center;
+  display: block;
+  flex-shrink: 0;
+}
+
+
+#home-container {
+  display: table;
+}
+
+img {
+  max-width: 50%
+}
+
 nav {
   background-color:#716931;
   top: 0;
@@ -52,49 +111,7 @@ nav {
 .nav-link a {
   color: #e8e2d4;
 }
-footer {
-  border-top: solid #716931 .25rem;
-  margin-top: 1px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  align-items: center;
-  display: block;
-  flex-shrink: 0;
-}
-.card-body {
-  background: #716931;
-  color: #fff;
-  border-radius: 3px;
-}
-.card-img-top {
-  width: 100%;
-  object-fit: cover;
-  max-width: 37vh;
-  max-height: 30vh;
-}
-#scrollbar{
-  height: 500px;    
-  overflow-y: auto;   
-  overflow-x: hidden; 
-  vertical-align: top;
-}
-.avatar {
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-img {
-  max-width: 50%
-}
-#home-container {
-  display: table;
-}
-#water-card button, [type="button"], [type="reset"], [type="submit"]{
-  background: #e9d1c5;
-}
+
 #plant_graph {
   text-align: center;
   width: 80%;
@@ -106,12 +123,43 @@ img {
   border: 2px solid black;
   padding: 1em;
 }
-// #plant_picture {
-  
-// }
-.col-4 {
-  img {
-    min-height: 100%;
 
-  }
+#plant_profile {
+  padding: 1em;
+}
+
+
+#plant_health {
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#scrollbar{
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  vertical-align: top;
+}
+
+.table > thead {
+  background: aquamarine;
+}
+
+table > tbody .past {
+  background:pink;
+}
+
+table > tbody .future {
+  background:rgb(147, 182, 220);
+}
+
+table > tbody .today {
+  background:rgb(114, 221, 97) !important;
+}
+
+#water-card button, [type="button"], [type="reset"], [type="submit"] {
+  background: #e9d1c5;
 }

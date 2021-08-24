@@ -1,0 +1,8 @@
+<%= week_calendar(events: @plants) do |date, plants| %>
+  <%= date %>
+  <% plants.each do |plant| %>
+  <div>
+    <%= plant.name %>
+  <div>
+  <% end %>
+<% end %>

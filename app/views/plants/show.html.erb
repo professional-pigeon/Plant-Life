@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row", id="plant_profile">
     <div class="col-4">
       <% if @plant.photo.attached? %>
         <%= image_tag @plant.photo %>
@@ -8,15 +8,8 @@
       <% end %>
     </div>
     <div class="col-8">
-      <br>
-      <br>
-      <%= @plant.name %>
-      <br>
-      <br>
-      <%= @api_response['data'][0]['attributes']['binomial_name'] %>
-      <br>
-      <br>
-      Health: <%= @plant.health %>
+      <h1><%= @plant.name %><strong></h1>
+      <%= @api_response['data'][0]['attributes']['binomial_name'].downcase %>
       <br>
       <br>
       <% if @api_response['data'][0]['attributes']['description'] != nil %>
@@ -26,37 +19,38 @@
       <% end %>
     </div>
   </div>
-  <br>
-  <br>
-  <% if @plant.health_next_update?%>
-    <% if Time.now.to_i > (@plant.health_next_update + 120) %>
-      <%= form_for [@plant] do |f| %>
-        <p>How healthy is your plant looking this week?<p>
-        <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
-        <%= f.radio_button :health, "Dismal" %> Dismal
-        <%= f.radio_button :health, "Bad" %> Bad
-        <%= f.radio_button :health, "Doing OK" %> Doing OK
-        <%= f.radio_button :health, "Good" %> Good
-        <%= f.radio_button :health, "Excellent" %> Excellent
-        <%= f.submit %>
+  <div id="plant_health">
+    <h4>Your <%= @plant.name.downcase %>'s health rating is '<%= @plant.health %>.'</h4>
+    <% if @plant.health_next_update?%>
+      <% if Time.now.to_i > (@plant.health_next_update + 120) %>
+        <%= form_for [@plant] do |f| %>
+          <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
+          <%= f.radio_button :health, "Dismal" %> Dismal
+          <%= f.radio_button :health, "Bad" %> Bad
+          <%= f.radio_button :health, "Doing OK" %> Doing OK
+          <%= f.radio_button :health, "Good" %> Good
+          <%= f.radio_button :health, "Excellent" %> Excellent
+          <br>
+          <br>
+          <%= f.submit "Update Health" %>
+        <% end %>
+      <% else %>
+        <p> We'll ask you again next week for an update on your plant!</p>
       <% end %>
-    <% else %>
-      <p> We'll ask you again next week for an update on your plant!</p>
-      <br>
-      <p>Right now it's looking like <%= @plant.health %>
-    <% end %>
-    <% else %>
-      <%= form_for [@plant] do |f| %>
-        <p>How healthy is your plant looking this week?<p>
-        <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
-        <%= f.radio_button :health, "Dismal" %> Dismal
-        <%= f.radio_button :health, "Bad" %> Bad
-        <%= f.radio_button :health, "Doing OK" %> Doing OK
-        <%= f.radio_button :health, "Good" %> Good
-        <%= f.radio_button :health, "Excellent" %> Excellent
-        <%= f.submit %>
-      <% end %>
-  <%end%>
+      <% else %>
+        <%= form_for [@plant] do |f| %>
+          <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
+          <%= f.radio_button :health, "Dismal" %> Dismal
+          <%= f.radio_button :health, "Bad" %> Bad
+          <%= f.radio_button :health, "Doing OK" %> Doing OK
+          <%= f.radio_button :health, "Good" %> Good
+          <%= f.radio_button :health, "Excellent" %> Excellent
+          <br>
+          <br>
+          <%= f.submit "Update Health" %>
+        <% end %>
+    <%end%>
+  </div>
   <div id="plant_graph">
     <p>Your Plants' Health</p>
     <%= bar_chart Plant.group(:name).where(id: @user.plants).group(:health).count, stacked: true %>
