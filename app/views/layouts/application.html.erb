@@ -28,13 +28,13 @@
 <div class="ham-menu">
   <ul class="centre-text bold-text">
   <% if current_user %>
-    <li><%= link_to "Home", '/homes'%></li>
+    <li><%= link_to "Home", '/home'%></li>
     <li><%= link_to current_user.email , '/users/edit' %></li>
     <li><%= link_to 'Messages', '/users/profile' %></li>
     <li><%=link_to 'Your Plants', plants_path %></li>
     <li><%= link_to "Sign out", '/users/sign_out', :method => :delete %></li>
   <% else %> 
-    <li><%= link_to "Home", '/homes'%></li>
+    <li><%= link_to "Home", '/home'%></li>
     <li><%= link_to "Sign in", '/users/sign_in' %></li>
     <li><%= link_to "Sign up", '/users/sign_up'%></li>
 
@@ -55,6 +55,8 @@
         <%= flash[:notice] %>
       </div>
     <%end%>
+  </div>
+  <div class="container">
     <%= yield :charts_js %>
     <%= yield %>
   </div>

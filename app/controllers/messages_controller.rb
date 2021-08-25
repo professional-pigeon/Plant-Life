@@ -30,6 +30,6 @@ class MessagesController < ApplicationController
   end
 
   def set_recipient
-      @recipient = User.find params[:user_id]
+   @recipient = User.find params[:user_id]
   end
 end

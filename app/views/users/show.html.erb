@@ -5,7 +5,7 @@
   </div>
   <div class="col-6">
     <h2>Send Message</h2>
-    <%= link_to "Send Message", user_messages_path(@user.id) %>
+    <%= link_to "Send Message", "#{@user.id}/messages/new" %>
   </div>
   <h3>Plants:</h3>
 <% @user.plants.each do |plant| %>

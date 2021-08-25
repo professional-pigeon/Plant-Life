@@ -16,7 +16,11 @@ class UsersController < ApplicationController
   end
 
   def show 
+    @message = current_user.sent_messages.new
+    @messages = current_user.messages
+    pen_pal = @message.recipient_id
     @user = User.find(params[:id])
+    @sender = current_user
   end
   
 end

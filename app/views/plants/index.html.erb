@@ -6,7 +6,9 @@
       <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
       <br>
       <a href="../plants/tasks">Click here to see your tasks for the day</a>
-      
+    </div>
+    </div>
+      <h3><%= link_to 'Add Plant', 'plants/new' %></h3>
     </div>
 
     <div class="col-md-8">
@@ -14,7 +16,6 @@
         <p>"How are your plants doing?"</p>
       </div>
       <div class="row">
-        <span id="paginate"><%= paginate @plants %></span>
         <% @plants.each do |plant|%>
           <div class="col-sm-3">
             <div class="card">
@@ -30,10 +31,92 @@
           </div>
       </div>
         <% end %>
-    </div>
-    <h3><%= link_to 'Add Plant', 'plants/new' %></h3>
+
+</div>
+
+
+
+<div class="container">
+<div class="row">
+  <div class="profile-nav col-md-3">
+      <div class="panel">
+          <div class="user-heading round">
+              <a href="#">
+                  <img id="profile_pic" src="<%="#{Faker::Placeholdit.image}"%>">
+              </a>
+              <h1> Welcome <%= @user.username %></h1>
+          </div>
+
+          <ul class="nav nav-pills nav-stacked">
+              <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+              <li><a href="#"> <i class="fa fa-calendar"></i> Activities for the Week <span class="label label-warning pull-right r-activity">9</span></a></li>
+              <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+          </ul>
+      </div>
+  </div>
+  <div class="profile-info col-md-9">
+      <div class="panel">
+          <form>
+              <textarea placeholder="Whats in your mind today?" rows="2" class="form-control input-lg p-text-area"></textarea>
+          </form>
+          <footer class="panel-footer">
+              <button class="btn btn-warning pull-right">Post</button>
+              <ul class="nav nav-pills">
+                  <li>
+                      <a href="#"><i class="fa fa-map-marker"></i></a>
+                  </li>
+                  <li>
+                      <a href="#"><i class="fa fa-camera"></i></a>
+                  </li>
+                  <li>
+                      <a href="#"><i class=" fa fa-film"></i></a>
+                  </li>
+                  <li>
+                      <a href="#"><i class="fa fa-microphone"></i></a>
+                  </li>
+              </ul>
+          </footer>
+      </div>
+      <div class="panel">
+          <div class="bio-graph-heading">
+              Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
+          </div>
+          <div class="panel-body bio-graph-info">
+              <h1>Header 1</h1>
+              <div class="row">
+                  <div class="bio-row">
+                      <p><span>Things To do </span>: Testing </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div>
+          <div class="row">
+          <% @plants.each do |plant|%>
+            <div class="col-sm-3">
+            <div class="card">
+              <% if plant.photo.attached? %>
+                <%= image_tag plant.photo %>
+              <% else %>
+                <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" height="auto" alt="">
+              <% end %>
+            <div class="card-body" style="height: 100px">
+              <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
+              <p class="card-text"></p>
+            </div>
+          </div>
+      </div>
+            <%end%>
+            <span id="paginate"><%= paginate @plants %></span>
+
+          </div>
+      </div>
   </div>
 </div>
+</div>
+
+
+
 
 
     
