@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
   before_action :set_recipient, only: [:new, :create]
 
   def new
-     @message = current_user.sent_messages.new
+   @message = current_user.sent_messages.new
+   @user = @recipient
   end
 
   def create
@@ -31,5 +32,6 @@ class MessagesController < ApplicationController
 
   def set_recipient
    @recipient = User.find params[:user_id]
+   # debugger
   end
 end

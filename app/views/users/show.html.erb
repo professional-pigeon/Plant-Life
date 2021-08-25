@@ -1,13 +1,20 @@
-<div class="row">
-  <div class="col-6">
-    <h1><%= @user.username %></h1>
-    <h2><%= @user.email %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-6 user_pic">
+      <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
+    </div>
+    <div class="col-6">
+      <h1><%= @user.username %></h1>
+      <h4>Member Since: <%= @user.created_at %>
+      <br>
+      <%= @user.plants.count %> Plants
+      <br>
+      Average Plant Health: <%= @user.plants.first.health %></h4>
+      <%= link_to "Send Message", "#{@user.id}/messages/new" %>
+    </div>
   </div>
-  <div class="col-6">
-    <h2>Send Message</h2>
-    <%= link_to "Send Message", "#{@user.id}/messages/new" %>
-  </div>
-  <h3>Plants:</h3>
-<% @user.plants.each do |plant| %>
-  <%= link_to plant.name, plant_path(plant) %>
-<% end %>
+    <h3>Plants:</h3>
+    <% @user.plants.each do |plant| %>
+      <%= link_to plant.name, plant_path(plant) %>
+    <% end %>
+</div>

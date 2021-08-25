@@ -24,6 +24,16 @@ end
   Plant.create!(name: Faker::Food.vegetables, category: categories.sample, health: health_array.sample, user_id: Faker::Number.within(range: 1..5), water_time: Time.now, health_next_update: Time.now.to_i )
 end
 
-p "Created #{User.count} users and #{Plant.count} plants."
+@sample_user = User.new({ username: "Unique Name! Cool!", email: "Test@test.com", password: 'User2002!', password_confirmation: 'User2002!'})
+@sample_user.skip_confirmation!
+@sample_user.save
+
+8.times do |index|
+  categories = ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb']
+  health_array = ["Dismal", "Bad", "Okay", "Good", "Excellent"]
+  Plant.create!(name: Faker::Food.vegetables, category: categories.sample, health: health_array.sample, user_id: @sample_user.id, water_time: Time.now, health_next_update: Time.now.to_i )
+end
 
 AdminUser.create!(email: 'admin@admin.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+p "Created #{User.count} users and #{Plant.count} plants."

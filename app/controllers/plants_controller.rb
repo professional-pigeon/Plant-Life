@@ -25,7 +25,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:plant_id].to_i)
     if @plant.update({:water_time => @plant.wait_time})
       flash[:notice] = "Plant watering updated! next date is #{@plant.water_time.month}-#{@plant.water_time.day}"
-      redirect_to plants_path
+      redirect_to plants_tasks_path
     else
       @user = current_user
       flash[:notice] = "Update failed. Please try again"
@@ -56,7 +56,12 @@ class PlantsController < ApplicationController
     @user = current_user
     @plant = Plant.find(params[:id])
     @api_response = HTTParty.get("http://openfarm.cc/api/v1/crops/?filter=#{@plant.name}")
-    render :show
+    if @plant.water_time < Time.now && @plant.id != current_user.id
+      flash[:alert] = "This plant needs water! Please reach out to your friend"
+      render :show
+    else
+      render :show
+    end
   end
 
   def edit
@@ -67,13 +72,19 @@ class PlantsController < ApplicationController
 
   def update
     @plant = Plant.find(params[:id])
-    if @plant.update(plant_params)
-      flash[:notice] = "Plant updated!"
-      redirect_to plant_path
+    if current_user.id == @plant.id
+      if @plant.update(plant_params)
+        flash[:notice] = "Plant updated!"
+        redirect_to plant_path
+      else
+        @user = current_user
+        flash[:notice] = "Update failed. Please try again"
+        render :edit
+      end
     else
       @user = current_user
-      flash[:notice] = "Update failed. Please try again"
-      render :edit
+      flash[:notice] = "Hey Stop Trying to update your friends plants"
+      redirect_to users_profile_path
     end
   end
 

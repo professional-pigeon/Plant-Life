@@ -47,6 +47,7 @@ gem "simple_calendar", "~> 2.4"
 gem 'activeadmin'
 gem 'kaminari'
 gem 'popper_js', '~> 2.9.3'
+gem 'font-awesome-sass'
 
 
 

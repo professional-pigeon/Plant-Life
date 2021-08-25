@@ -15,6 +15,8 @@
 
 @import "bootstrap";
 @import "simple_calendar";
+// @import "font-awesome-sprockets";
+// @import "font-awesome";
 
 .avatar {
   vertical-align: middle;
@@ -51,12 +53,16 @@ body {
 
 .card {
   box-shadow: 0 0 5px 0;
+  margin-bottom: 10px;
 }
 
 .card-body {
-  background: #716931;
+  background: #709680;
   color: #fff;
   border-radius: 3px;
+  a:link {
+    color: #fff;
+  }
 }
 
 .card-img-top {
@@ -120,10 +126,6 @@ footer {
   list-style-type: circle;
 }
 
-img {
-  max-width: 50%
-}
-
 nav {
   width: 100%;
   height: 50px;
@@ -133,6 +135,9 @@ nav {
 nav ul {
   float: left;
   margin-right: 30px;
+  box-shadow: 0 0 5px 0;
+  border-radius: 3px;
+  margin-top: 10px;
 }
 
 .nav-link {
@@ -179,19 +184,25 @@ nav ul {
 }
 
 .table > thead {
-  background: aquamarine;
+  background: #de9f7e;
 }
 
 table > tbody .past {
-  background:pink;
+  background:#5e7131;
 }
 
 table > tbody .future {
-  background:rgb(147, 182, 220);
+  background:#709680;
 }
 
 table > tbody .today {
-  background:rgb(114, 221, 97) !important;
+  background:#DDC1B5 !important;
+}
+.user_pic {
+  img {
+    min-width: 100%;
+    overflow: hidden;
+  }
 }
 
 #water-card button, [type="button"], [type="reset"], [type="submit"] {
@@ -484,3 +495,30 @@ label[for="ham-menu"] {
     font-size: 15px;
   }
 }
+
+#profile_sidebar{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVYr5hZ5Ca-5700qLGTYP_s1R1AipA8KudQ&usqp=CAU");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  border-radius: 5px;
+  background-color: white;
+  height:1095px;
+  box-shadow: 0 0 5px 0;
+}
+
+#plant_row{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVYr5hZ5Ca-5700qLGTYP_s1R1AipA8KudQ&usqp=CAU");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  border-radius: 5px;
+  background-color: white;
+  height:1000px;
+  box-shadow: 0 0 5px 0;
+  margin-left: 20px;
+  overflow: scroll;
+}
+
+// #plantindex_header{
+//  background-color: #e9d1c5; 
+// }
+

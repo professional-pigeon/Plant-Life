@@ -1,4 +1,12 @@
-<%= form_for(@message, url: "/users/id/messages") do |f| %>
-     <%= f.text_field :content, placeholder: 'Your message' %>
-     <%= f.submit "Send Message" %>
-<% end %>
+<div class="row">
+     <div class="col-6">
+          <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
+     </div>
+     <div class="col-6">
+          <h1><%= @recipient.username %></h1>
+          <%= form_for(@message, url: "/users/#{params[:user_id]}/messages") do |f| %>
+               <%= f.text_area :content, placeholder: 'Your message' %>
+          <%= f.submit "Send Message" %>
+          <% end %>
+     </div>
+</div>

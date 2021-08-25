@@ -1,13 +1,35 @@
-<h1><%= @user.username %>'s Profile</h1>
-<%= Message.all.to_a %>
-<%= current_user %>
-<h2>Inbox</h2>
-<% @messages.each do |message| %>
-   <%= message.content %>
-<% end %>
-
-<h2>Connect with Other Users:</h2>
-<% @users.each do |user| %>
-   <%= link_to user.username, "#{user.id}" %> 
-   <br>
-<% end %>
+<div class="container">
+   <div class="row">
+      <div class="col-6">
+         <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
+      </div>
+      <div class="col-6">
+         <br>
+         <h1><%= @user.username %></h1>
+         <h4>Member Since: <%= @user.created_at %>
+         <br>
+         <%= @user.plants.count %> Plants
+         <br>
+         Average Plant Health: <%= @user.plants.first.health %></h4>
+      </div>
+   </div>
+   <div id="inbox">
+      <h2>Inbox</h2>
+      <div class="row" >
+         <% @messages.first(4).each do |message| %>
+            <div class="col-3">
+               "<%= message.content %>"<br> <%=link_to User.find(message.sender_id).username, "#{message.sender_id}" %>
+            </div>
+         <% end %>
+      </div>
+   </div>
+   <h2>Connect with Other Users:</h2>
+   <div class="row">
+      <% @users.each do |user| %>
+         <div class="col-2">
+            <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [user.username])}" %>' width="50em">
+            <%= link_to user.username, "#{user.id}" %>
+         </div>
+      <% end %>
+   </div>
+</div>

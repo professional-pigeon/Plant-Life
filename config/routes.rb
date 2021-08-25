@@ -18,8 +18,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create, :profile] #-> domain.com/users/:user_id/messages/new
   end
     resources :messages, only: [:index, :show, :destroy] do
-      post "/users/:id/messages/new" => 'message#create'
+      # post "/users/:id/messages/new" => 'message#create'
     end
-    # post 'messages', to: 'users#show'
-
 end
