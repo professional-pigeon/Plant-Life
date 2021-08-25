@@ -14,6 +14,7 @@
         <p>"How are your plants doing?"</p>
       </div>
       <div class="row">
+        <span id="paginate"><%= paginate @plants %></span>
         <% @plants.each do |plant|%>
           <div class="col-sm-3">
             <div class="card">

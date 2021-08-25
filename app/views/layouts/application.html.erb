@@ -7,41 +7,58 @@
     <title>OK Bloomer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">OK Bloomer</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <div style="margin-left:auto;">
-              <% if current_user %>
-                <span class="nav-link"><img src="<%="#{Faker::Avatar.image}"%>" alt="Avatar" class="avatar"> | <%= link_to current_user.email , '/users/edit' %> | <%=link_to 'Your Plants', plants_path %> | <%= link_to "Sign out", '/users/sign_out', :method => :delete %></span>
-              <% else %>
-                <span class="nav-link"><%= link_to "Sign up", '/users/sign_up'%> | <%= link_to "Sign in", '/users/sign_in' %></span>
-              <% end %>
-            </div>
-          </div>
-        </div>
+
+<input type="checkbox" id="ham-menu">
+<label for="ham-menu">
+  <div class="hide-des">
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+  </div>
+
+</label>
+<div class="full-page-green"></div>
+<div class="ham-menu">
+  <ul class="centre-text bold-text">
+  <% if current_user %>
+    <li><%= link_to "Home", '/homes'%></li>
+    <li><%= link_to current_user.email , '/users/edit' %></li>
+    <li><%= link_to 'Messages', '/users/profile' %></li>
+    <li><%=link_to 'Your Plants', plants_path %></li>
+    <li><%= link_to "Sign out", '/users/sign_out', :method => :delete %></li>
+  <% else %> 
+    <li><%= link_to "Home", '/homes'%></li>
+    <li><%= link_to "Sign in", '/users/sign_in' %></li>
+    <li><%= link_to "Sign up", '/users/sign_up'%></li>
+
+  <% end %>
+  </ul>
+</div>
+
+
+<div class="container">
+  <div class="content">
+    <%if flash[:alert] %>
+      <div class="alert alert-danger mt-3" role="alert">
+        <%= flash[:alert] %>
       </div>
-    </nav>
-    <div class="content">
-      <%if flash[:alert] %>
-        <div class="alert alert-danger mt-3" role="alert">
-          <%= flash[:alert] %>
-        </div>
-      <%end%>
-      <%if flash[:notice] %>
-        <div class="alert alert-success mt-3" role="alert">
-          <%= flash[:notice] %>
-        </div>
-      <%end%>
-      <%= yield :charts_js %>
-      <%= yield %>
-    </div>
+    <%end%>
+    <%if flash[:notice] %>
+      <div class="alert alert-success mt-3" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <%end%>
+    <%= yield :charts_js %>
+    <%= yield %>
+  </div>
+</div>
     <footer class="footer mt-auto py-3 bg-light0" id="sticky-footer" style="position: relative;">
       <div class="container">
         <span class="text-muted" style="display:flex">Made with Love by: <a href="https://github.com/chonnessey"> Adrian Camacho </a>| <a href="https://github.com/jbpawlik"> Ben Pawlik </a>| <a href="https://github.com/professional-pigeon"> Kyle Kay Perez </a>| <a href="https://github.com/aracelivaldovinos"> Araceli Valdovinos.</span>

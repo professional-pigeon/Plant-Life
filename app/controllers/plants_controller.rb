@@ -9,8 +9,7 @@ class PlantsController < ApplicationController
 
   def index
     @user = current_user
-    @plants = @user.plants
-
+    @plants = @user.plants.order(:name).page params[:page]
     render :index
   end
 

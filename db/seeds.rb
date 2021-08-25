@@ -13,7 +13,9 @@ ActiveRecord::Base.connection.reset_pk_sequence!(User.table_name)
 ActiveRecord::Base.connection.reset_pk_sequence!(Plant.table_name)
 
 5.times do |index| 
-  User.create!({ username: Faker::Name.first_name, email: Faker::Internet.email, password: 'User2002!', password_confirmation: 'User2002!'})
+  @user = User.new({ username: Faker::Name.first_name, email: Faker::Internet.email, password: 'User2002!', password_confirmation: 'User2002!'})
+  @user.skip_confirmation!
+  @user.save
 end
 
 100.times do |index|
@@ -22,4 +24,6 @@ end
   Plant.create!(name: Faker::Food.vegetables, category: categories.sample, health: health_array.sample, user_id: Faker::Number.within(range: 1..5), water_time: Time.now, health_next_update: Time.now.to_i )
 end
 
-p "Created #{User.count} users and #{Plant.count} plants."AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+p "Created #{User.count} users and #{Plant.count} plants."
+
+AdminUser.create!(email: 'admin@admin.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
