@@ -44,6 +44,9 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'hightop'
 gem "simple_calendar", "~> 2.4"
+gem 'activeadmin'
+gem 'kaminari'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
