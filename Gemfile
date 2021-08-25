@@ -45,6 +45,7 @@ gem 'groupdate'
 gem 'hightop'
 gem "simple_calendar", "~> 2.4"
 
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'

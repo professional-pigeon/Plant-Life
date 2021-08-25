@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    confirmations: 'confirmations'
+  }
   get '/home', to: "homes#index"
   root to: "homes#index"
   get '/plants/tasks', to: "plants#tasks"
