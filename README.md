@@ -63,3 +63,5 @@ ___
 <p align="center">
   <small>Made in Portland, Oregon.</small>
 </p>
+
+kelli@schowalter.com

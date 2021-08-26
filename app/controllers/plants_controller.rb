@@ -1,11 +1,5 @@
 class PlantsController < ApplicationController
   before_action :authenticate_user!
-  # before_action except: [:new, :create, :show] do
-  #   unless is_user?
-  #     flash[:alert] = 'You do not have access to my plants!'
-  #       redirect_to plants_path
-  #     end
-  #   end
 
   def index
     @user = current_user
@@ -24,7 +18,7 @@ class PlantsController < ApplicationController
   def water_update
     @plant = Plant.find(params[:plant_id].to_i)
     if @plant.update({:water_time => @plant.wait_time})
-      flash[:notice] = "Plant watering updated! next date is #{@plant.water_time.month}-#{@plant.water_time.day}"
+      flash[:notice] = "Plant watering updated! next watering date is #{@plant.water_time.month}-#{@plant.water_time.day}"
       redirect_to plants_tasks_path
     else
       @user = current_user
@@ -43,7 +37,7 @@ class PlantsController < ApplicationController
     @user = current_user
     @plant = @user.plants.new(plant_params)
     @plant.photo.attach(params[:plant][:photo])
-    @plant.wait_time #this adds the watering date
+    @plant.wait_time
     if @plant.save
       flash[:notice] = "Plant added!"
       redirect_to plants_path

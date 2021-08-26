@@ -2,7 +2,7 @@
   <div class="row", id="plant_profile">
     <div class="col-4">
       <% if @plant.photo.attached? %>
-        <%= image_tag @plant.photo %>
+        <%= image_tag @plant.photo, width: '100%' %>
       <% else %>
         <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{@plant.name}"])}" %>", width="200px" heigth="auto" alt="">
       <% end %>
