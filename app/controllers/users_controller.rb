@@ -17,8 +17,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @users = User.all
     @user.photo.attach(params[:user][:photo])
-
+    @messages = current_user.messages
+    @message = current_user.sent_messages.new
+    render :profile
   end
 
   def show
@@ -27,4 +30,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @sender = current_user
   end
+
 end

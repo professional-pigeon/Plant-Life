@@ -22,7 +22,7 @@
   <div id="plant_health">
     <h4>Your <%= @plant.name.downcase %>'s health rating is '<%= @plant.health %>.'</h4>
     <% if @plant.health_next_update?%>
-      <% if Time.now.to_i > (@plant.health_next_update + 120) %>
+      <% if Time.now.to_i < (@plant.health_next_update + 86000) %>
         <%= form_for [@plant] do |f| %>
           <%= f.hidden_field :health_next_update, value: Time.now.to_i %>
           <%= f.radio_button :health, "Dismal" %> Dismal

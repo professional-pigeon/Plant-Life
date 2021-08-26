@@ -2,6 +2,7 @@ class Plant < ApplicationRecord
   belongs_to :user
   has_one_attached :photo
   validates :photo, presence: true
+  validates :name, presence: true
   # scope :user, (param)-> { where('(user_id) like ?', "#{param}")}
   def wait_time
     if self.category == 'Tree' || self.category == 'Fruit'
