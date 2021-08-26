@@ -1,15 +1,40 @@
 <div class="container">
      <div class="row">
-          <div class="col-6">
-               <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
-          </div>
-          <div class="col-6">
-               <h1><%= @recipient.username %></h1>
-               <%= form_for(@message, url: "/users/#{params[:user_id]}/messages") do |f| %>
-                    <%= f.text_area :content, placeholder: 'Your message', required: true %>
-               <%= f.submit "Send Message" %>
-               <% end %>
+          <div class="col-2" id="user_profile_sidebar">
+               <div class="user-heading round">
+                    <div class="row" id="profile_row">
+                         <br>
+                         <h2 style="text-align:center;", id="plantindex_header"><%#= current_user.username %></h2>
+                         <% if current_user.photo.attached? %>
+                              <%= link_to(image_tag(current_user.photo, width: "100%", id: "profile_pic")) %>
+                         <% else %>
+                              <%= link_to image_tag("#{Faker::LoremFlickr.image(search_terms: [current_user.username])}" , id: "profile_pic"), '/users/profile' %>
+                         <% end %>
+                    </div>
+               <ul style="text-align:left;">
+                    <br>
+                    <li><a href="../users/profile"><img src="https://img.icons8.com/pastel-glyph/64/000000/envelope-number--v2.png" class="sidebar_icon"/></a></li>
+                    <br>
+                    <li><a href="../plants/tasks"><img src="https://img.icons8.com/color/48/000000/task--v2.png" class="sidebar_icon"/></a></li>
+                    <br>
+                    <li><a href="../plants/new"><img src="https://img.icons8.com/office/80/000000/potted-plant.png" class="sidebar_icon"/></a></li>
+                    <br>
+               </ul>  
           </div>
      </div>
-     <h3><%= link_to @user.username, "/users/#{@user.id}" %></h3>
+     <div class="col-6">
+               <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' id="new_message_picture" >
+          </div>
+          <div class="col-4" id="new_message_link">
+               <h1><%= @recipient.username %></h1>
+               <br>
+               <%= form_for(@message, url: "/users/#{params[:user_id]}/messages") do |f| %>
+                    <%= f.text_area :content, required: true %>
+               <%= f.submit "Send Message" %>
+               <% end %>
+               <br>
+               <br>
+               <h3><%= link_to "Back to #{@user.username}", "/users/#{@user.id}" %></h3>
+          </div>
+     </div>
 </div>

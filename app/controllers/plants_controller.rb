@@ -56,7 +56,7 @@ class PlantsController < ApplicationController
     @user = current_user
     @plant = Plant.find(params[:id])
     @api_response = HTTParty.get("http://openfarm.cc/api/v1/crops/?filter=#{@plant.name}")
-    if @plant.water_time < Time.now && @plant.id != current_user.id
+    if @plant.water_time < Time.now && @plant.user_id != current_user.id
       flash[:alert] = "This plant needs water! Please reach out to your friend"
       render :show
     else
@@ -72,7 +72,7 @@ class PlantsController < ApplicationController
 
   def update
     @plant = Plant.find(params[:id])
-    if current_user.id == @plant.id
+    if current_user.id == @plant.user_id
       if @plant.update(plant_params)
         flash[:notice] = "Plant updated!"
         redirect_to plant_path

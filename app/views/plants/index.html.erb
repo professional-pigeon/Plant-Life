@@ -44,7 +44,14 @@
               <img class="card-img-top" src="<%= "#{Faker::LoremFlickr.image(search_terms: ["#{plant.name}"])}" %>", width="200px" height="auto" alt="">
             <% end %>
             <div class="card-body" style="height: 100px">
-              <p class="card-text"><img src="https://img.icons8.com/material/24/000000/potted-plant.png"/><img src="https://img.icons8.com/material/24/000000/potted-plant.png"/><img src="https://img.icons8.com/material/24/000000/potted-plant.png"/><img src="https://img.icons8.com/material/24/000000/potted-plant.png"/><img src="https://img.icons8.com/material-outlined/24/000000/potted-plant.png"/></p>
+              <p class="card-text">
+                <% plant.health_to_num.times do %>
+                  <img src="https://img.icons8.com/material/24/000000/potted-plant.png"/>
+                <% end %>
+                <% (5 -plant.health_to_num).times do %>
+                  <img src="https://img.icons8.com/material-outlined/24/000000/potted-plant.png"/>
+                <% end %>
+                </p>
               <h5 class="card-title" style="font-size:18px;"><%= link_to plant.name, plant_path(plant) %></h5>
             </div>
           </div>

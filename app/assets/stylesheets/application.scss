@@ -18,6 +18,12 @@
  // @import "font-awesome-sprockets";
  // @import "font-awesome";
 
+ a  {
+   color: rgba(86, 128, 192, 0.815);
+ }
+ a:hover {
+  color: rgba(201, 144, 58, 0.76);
+  }
 .avatar {
   vertical-align: middle;
   width: 50px;
@@ -150,7 +156,8 @@ footer {
 
 #inbox {
   margin-top: 1em;
-  
+  min-height: 100%;
+  background-color: #a1ceb3;
 }
 
 nav {
@@ -200,8 +207,10 @@ nav ul {
 }
 
 #profile_page {
+  // background-color: #a1ceb3;
   margin-left: 5%;
   margin-top: 5%;
+  background-color: #95a19a;
   img {
     border: solid black 2px;
     border-radius: 5px;
@@ -276,11 +285,29 @@ color: black;
 
 .table-home tr:hover {background-color: #DDC1B5;}
 
+#user_profile_sidebar{
+  background-color: #edbfa6;
+  min-height:100%;
+  }
+
+#new_message_picture {
+  min-height: 100%;
+  display:block;
+  overflow: hidden;
+}
+
+#new_message_link {
+  // background-color: rgb(186, 245, 242);
+  background-color: #a1ceb3;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
 #user_profile_garden {
-  background-color: rgb(22, 240, 229);
+  background-color: rgba(186, 245, 242, 0.597);
 }
 #user_profile_page {
-  background-color: #88c6a1;
+  background-color: #a1ceb3a6;
 }
 .user_pic {
   img {
@@ -588,10 +615,6 @@ label[for="ham-menu"] {
 
  #profile_sidebar{
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVYr5hZ5Ca-5700qLGTYP_s1R1AipA8KudQ&usqp=CAU");
-  //  background: image-url("fence.jpg");
-  //  background-image: url("/assets/images/fence.jpg");
-  //  background-image: url(/assets/fence.jpg);
-  // background: url( asset-path('fence.jpg') ) no-repeat;
    background-repeat: repeat-x;
    background-position: bottom;
    border-radius: 5px;
@@ -643,8 +666,13 @@ label[for="ham-menu"] {
   min-height: 100%;
 }
 
+#connect_with {
+  display: flexbox;
+  flex: inline-flex;
+}
 .friends {
   text-decoration: underline;
+  text-align: center;
 }
 
 #friend-column {
@@ -691,5 +719,26 @@ label[for="ham-menu"] {
   margin-top: 15px;
   width: 350px;
   margin-left: 25px;
+}
+
+#plant_form{
+  overflow: hidden;
+  min-height: 100%;
+  width: 600px;
+  background-color: white;
+  box-shadow: 0 0 5px 0;
+  background-image: url("https://img.freepik.com/free-vector/tropical-background-with-different-leaves_52683-36517.jpg?size=626&ext=jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: right;
+  border-radius: 5px;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  
+}
+
+.inbox-scroll {
+  overflow-y: scroll;
+  height: 100%;
 }
  

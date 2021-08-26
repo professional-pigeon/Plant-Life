@@ -1,27 +1,30 @@
 <h2>
 <div class="col-9">
   <%= form_for [@plant] do |f| %>
-    <div class="row">
-    <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
+    <div class="row" style="margin-left:15%;">
+      <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
     </div>
     <br>
     <br>
-    <div class="row">
+    <div class="row" style="margin-left:10%;">
       <div class="col-6">
-      <%= f.label :category, class: "formLabel"%>
+      <h2 style="margin-left:20%;">Category</h2>
+      <hr style="margin-left:20%;">
       <br>
-      <%= f.select :category, ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb'], id: "f.select"%> 
+      <%= f.select :category, ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb']%> 
       </div>
-      <div class="col-6">
-      <%= f.select :health, ["Dismal", "Bad", "Okay", "Good", "Excellent"] %>
-      <%= f.label :health, class: "formLabel" %>
-      </div>
-    <br>
+    <div class="col-6">
+      <h2 style="margin-left:50%;">Health</h2>
+      <hr style="margin-left:50%;">
+      <%= f.select :health, ['Dismal', 'Bad',  'Okay', 'Good', 'Excellent']%> 
+    </div>
     </div>
     <br>
     <br>
     <%= f.file_field :photo %>
-    <%= f.submit %>
+    <div class="row" style="margin-left:25%;">
+    <%= f.submit class:"btn btn-primary", id:"signup_button"%>
+    </div>
   <% end %>
 </h2>
 </div>

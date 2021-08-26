@@ -20,4 +20,21 @@ class Plant < ApplicationRecord
     self.water_time
   end
 
+  def health_to_num
+    n = 0
+    if self.health == "Excellent"
+      n = 5
+    elsif self.health == "Good"
+      n = 4
+    elsif self.health == "Okay"
+      n = 3
+    elsif self.health == "Bad"
+      n = 2
+    else
+      n = 1
+    end
+    return n
+  end
+
+
 end

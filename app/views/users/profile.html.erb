@@ -1,13 +1,28 @@
 <div class="container" id="profile_page">
    <div class="row">
-      <div class="col-6">
-         <% if @user.photo.attached? %>
-            <%= image_tag @user.photo, width: "100%" %>
-         <% else %>
-            <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >   
-         <% end %>
+      <div class="col-2" id="user_profile_sidebar">
+         <div class="user-heading round">
+            <div class="row" id="profile_row">
+               <br>
+               <h2 style="text-align:center;", id="plantindex_header"><%#= current_user.username %></h2>
+               <% if current_user.photo.attached? %>
+                  <%= link_to(image_tag(current_user.photo, width: "100%", id: "profile_pic")) %>
+               <% else %>
+                  <%= link_to image_tag("#{Faker::LoremFlickr.image(search_terms: [current_user.username])}" , id: "profile_pic"), '/users/profile' %>
+               <% end %>
+            </div>
+            <ul style="text-align:left;">
+               <br>
+               <li><a href="../users/profile"><img src="https://img.icons8.com/pastel-glyph/64/000000/envelope-number--v2.png" class="sidebar_icon"/></a></li>
+               <br>
+               <li><a href="../plants/tasks"><img src="https://img.icons8.com/color/48/000000/task--v2.png" class="sidebar_icon"/></a></li>
+               <br>
+               <li><a href="../plants/new"><img src="https://img.icons8.com/office/80/000000/potted-plant.png" class="sidebar_icon"/></a></li>
+               <br>
+            </ul>  
+         </div>
       </div>
-      <div class="col-4">
+      <div class="col-6">
          <div class="card">
             <div class="card-header">
                <h1><%= @user.username %><span class="wave">👋</span></h1>
@@ -19,41 +34,38 @@
                <li>Average Plant Health: <%= @user.plants.first.health %></li>
                </ul>
          </div>
-      </div>
-   </div>
-   <div class="row" margin->
-      <div class="col-md-3">
+         <% if @user.photo.attached? %>
+            <%= image_tag @user.photo, width: "100%" %>
+         <% else %>
+            <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >   
+         <% end %>
          <%= form_for [@user] do |f| %>
             <%= f.file_field :photo %><%= f.submit "New Photo" %>
          <% end %>
       </div>
    </div>
-
-   <div class="row">
-      <div class="col-sm-4" id="inbox">
+     <div class="col-4 inbox-scroll" id="inbox">
          <h2 class="friends">Inbox </h2>
-      </div>
-      <div class="col-sm-4">
-         <h2 class="friends">Connect with Other Users:</h2>
-      </div>
-   </div>
-      <div class="row" id="message_row" >
-         <div class="col-sm-3">
-            <div class="card">
-               <div class="card-body">
-                  <% @messages.first(8).each do |message| %>
-                     <h4 class ="card-title"><%=link_to User.find(message.sender_id).  username, "#{message.sender_id}" %></h4>
-                     <p class="card-text">"<%= message.content %>"</p>
-                  <% end %>
-               </div>
+         <div class="card">
+            <div class="card-body">
+               <% @messages.first(8).each do |message| %>
+                  <h4 class ="card-title"><%=link_to User.find(message.sender_id).  username, "#{message.sender_id}" %></h4>
+                  <p class="card-text">"<%= message.content %>"</p>
+               <% end %>
             </div>
          </div>
+      </div>
+   </div>
+   <div id="connect_with">
+      <h2 class="friends">Connect with Other Users:</h2>
+      <div class="row" id="message_row" >
          <div class="col-9" id="friend-column">
             <% @users.each do |user| %>
                <div class="card friend-card">
                   <img class="card-img-top" src='<%= "#{Faker::LoremFlickr.image(search_terms: [user.username])}" %>'>
                   <div class="card-body">
-                     <h6 class="card-title"><%= link_to user.username, "/users/#{user.id}" %></h6>
+                     <h4 class="card-title"><%= link_to user.username, "/users/#{user.id}" %></h4>
+                     <h6 class="card-text">Joined: <%= user.created_at.strftime("%B %Y") %>.</h6>
                   </div>
                </div>
             <% end %>
