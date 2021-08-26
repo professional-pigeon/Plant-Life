@@ -1,18 +1,27 @@
 <h2>
+<div class="col-9">
   <%= form_for [@plant] do |f| %>
+    <div class="row">
     <%= f.text_field :name, class: "form-control", placeholder: 'Name' %>
-    <%# <%= f.label :name, class: "formLabel" %>
+    </div>
     <br>
     <br>
-    <%= f.label :category, class: "formLabel" %>
-    <%= f.select :category, ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb'] %>
+    <div class="row">
+      <div class="col-6">
+      <%= f.label :category, class: "formLabel"%>
+      <br>
+      <%= f.select :category, ['Tree', 'Houseplant',  'Vegetable', 'Fruit', 'Herb'], id: "f.select"%> 
+      </div>
+      <div class="col-6">
+      <%= f.select :health, ["Dismal", "Bad", "Okay", "Good", "Excellent"] %>
+      <%= f.label :health, class: "formLabel" %>
+      </div>
     <br>
-    <br>
-    <%= f.select :health, ["Dismal", "Bad", "Okay", "Good", "Excellent"] %>
-    <%# <%= f.label :health, class: "formLabel" %>
+    </div>
     <br>
     <br>
     <%= f.file_field :photo %>
     <%= f.submit %>
   <% end %>
 </h2>
+</div>

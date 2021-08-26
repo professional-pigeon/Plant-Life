@@ -1,35 +1,75 @@
-<div class="container">
+<div class="container" id="profile_page">
    <div class="row">
       <div class="col-6">
-         <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
+         <% if @user.photo.attached? %>
+            <%= image_tag @user.photo, width: "100%" %>
+         <% else %>
+            <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >   
+         <% end %>
       </div>
-      <div class="col-6">
-         <br>
-         <h1><%= @user.username %></h1>
-         <h4>Member Since: <%= @user.created_at %>
-         <br>
-         <%= @user.plants.count %> Plants
-         <br>
-         Average Plant Health: <%= @user.plants.first.health %></h4>
+      <div class="col-4">
+         <div class="card">
+            <div class="card-header">
+               <h1><%= @user.username %><span class="wave">👋</span></h1>
+            </div>
+            <div class="card-body profile-body">
+               <h4 class="card-title">Member Since: <%= @user.created_at.strftime("%B %Y") %></h4>
+               <ul class="card-text">
+                  <li><%= @user.plants.count %> Plants</li>
+               <li>Average Plant Health: <%= @user.plants.first.health %></li>
+               </ul>
+         </div>
       </div>
    </div>
-   <div id="inbox">
-      <h2>Inbox</h2>
-      <div class="row" >
-         <% @messages.first(4).each do |message| %>
-            <div class="col-3">
-               "<%= message.content %>"<br> <%=link_to User.find(message.sender_id).username, "#{message.sender_id}" %>
-            </div>
+   <div class="row" margin->
+      <div class="col-md-3">
+         <%= form_for [@user] do |f| %>
+            <%= f.file_field :photo %><%= f.submit "New Photo" %>
          <% end %>
       </div>
    </div>
-   <h2>Connect with Other Users:</h2>
+
    <div class="row">
-      <% @users.each do |user| %>
-         <div class="col-2">
-            <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [user.username])}" %>' width="50em">
-            <%= link_to user.username, "#{user.id}" %>
+      <div class="col-sm-4" id="inbox">
+         <h2 class="friends">Inbox </h2>
+      </div>
+      <div class="col-sm-4">
+         <h2 class="friends">Connect with Other Users:</h2>
+      </div>
+   </div>
+      <div class="row" id="message_row" >
+         <div class="col-sm-3">
+            <div class="card">
+               <div class="card-body">
+                  <% @messages.first(8).each do |message| %>
+                     <h4 class ="card-title"><%=link_to User.find(message.sender_id).  username, "#{message.sender_id}" %></h4>
+                     <p class="card-text">"<%= message.content %>"</p>
+                  <% end %>
+               </div>
+            </div>
          </div>
-      <% end %>
+         <div class="col-9" id="friend-column">
+            <% @users.each do |user| %>
+               <div class="card friend-card">
+                  <img class="card-img-top" src='<%= "#{Faker::LoremFlickr.image(search_terms: [user.username])}" %>'>
+                  <div class="card-body">
+                     <h6 class="card-title"><%= link_to user.username, "/users/#{user.id}" %></h6>
+                  </div>
+               </div>
+            <% end %>
+         </div>
+      </div>
    </div>
 </div>
+
+<%# <div class="card">
+  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">Card title</h4>
+    <p class="card-text">
+      Some quick example text to build on the card title
+      and make up the bulk of the card's content.
+    </p>
+    <a href="#!" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> %>

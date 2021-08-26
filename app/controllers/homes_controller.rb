@@ -1,16 +1,9 @@
 class HomesController < ApplicationController
 
   def index
-    @user = User.all.first
-    @plants = @plants = @user.plants
+    @best = User.best_users.slice(0, 5)
+    @worst = User.worst_users.slice(0, 5)
+    @healthy = User.healthiest
   end
 
-  def test
-    respond_to do |format|
-      format.html
-      format.js
-    @user = User.all.first
-    @plants = @plants = @user.plants
-    end
-  end
 end

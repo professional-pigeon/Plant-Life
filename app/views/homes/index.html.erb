@@ -1,12 +1,112 @@
+<%#
+  <div class="col-sm-3">
+    <div class="card m-1">
+      <div class="card-body">
+        <h5 class="card-title">Radishes</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Climate:</li>
+        <li class="list-group-item">Instructions:</li>
+      </ul>
+    </div>
+  </div>
+</div> %>
+
 <div class="container" id="home-container">
-  <h1>OK Bloomer</h1>
-  <h1>Keeping your plants healthy and hip.</h1>
-  <br>
-  <br>
-  <h3> About OK Bloomer </h3>
-  <p>We at OK Bloomer believe plants can do better and you can do better for your plants. We're here to use our decades of experience in maintaining healthy plants to help you learn when to water, fertilize, and repot your plants. </p>
-  <p> We use social accountability and plant health tracking to keep you on track. Sign up today or reach out to our team with questions!</p>
-  <br>
+  <% if current_user%>
+  <h1>These are your top 3 Gardeners!</h1>
+  <div class="row">
+    <div class="col">
+      <div class="card card-winners">
+        <div class="card-body">
+          <h5 class="card-title"><%= @healthy[0][:user_name] %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Avgerage Health rating: <%= @healthy[0][:avg_health] %></li>
+          <li class="list-group-item"><%= @healthy[0][:excellent] %> plants in excellent health</li>
+          <li class="list-group-item"><%= @healthy[0][:good] %> plants in good health</li>
+          <li class="list-group-item"><%= @healthy[0][:okay] %> plants in okay health</li>
+          <li class="list-group-item"><%= @healthy[0][:bad] %> plants in bad health</li>
+          <li class="list-group-item"><%= @healthy[0][:dismal] %> plants in dismal health</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card card-winners">
+        <div class="card-body">
+          <h5 class="card-title"><%= @healthy[1][:user_name] %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Avgerage Health rating: <%= @healthy[1][:avg_health] %></li>
+          <li class="list-group-item"><%= @healthy[1][:excellent] %> plants in excellent health</li>
+          <li class="list-group-item"><%= @healthy[1][:good] %> plants in good health</li>
+          <li class="list-group-item"><%= @healthy[1][:okay] %> plants in okay health</li>
+          <li class="list-group-item"><%= @healthy[1][:bad] %> plants in bad health</li>
+          <li class="list-group-item"><%= @healthy[1][:dismal] %> plants in dismal health</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card card-winners">
+        <div class="card-body">
+          <h5 class="card-title"><%= @healthy[2][:user_name] %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Avgerage Health rating: <%= @healthy[2][:avg_health] %></li>
+          <li class="list-group-item"><%= @healthy[2][:excellent] %> plants in excellent health</li>
+          <li class="list-group-item"><%= @healthy[2][:good] %> plants in good health</li>
+          <li class="list-group-item"><%= @healthy[2][:okay] %> plants in okay health</li>
+          <li class="list-group-item"><%= @healthy[2][:bad] %> plants in bad health</li>
+          <li class="list-group-item"><%= @healthy[2][:dismal] %> plants in dismal health</li>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    <h1>OK Bloomer</h1>
+    <h1>Keeping your plants healthy and hip.</h1>
+    <br>
+    <br>
+    <h3> About OK Bloomer </h3>
+    <p>We at OK Bloomer believe plants can do better and you can do better for your plants. We're here to use our decades of experience in maintaining healthy plants to help you learn when to water, fertilize, and repot your plants. </p>
+    <p> We use social accountability and plant health tracking to keep you on track. Sign up today or reach out to our team with questions!</p>
+    <br>
+  <% end %>
+
+  <% if current_user%>
+    <h1 id="water-heading">Who still has to water today?</h1>
+    <div class="row" id="home-table-row">
+      <div class="col">
+        <table class="table-home">
+        <h4>Water Winners</h4>
+          <tr>
+            <th>User Name</th>
+            <th>Plants to water today</th>
+          </tr>
+          <% @best.each do |best| %>
+            <tr>
+              <td><%= best[:user_name] %></td> 
+              <td><%= best[:dead_plants] %> plants to water today!</td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="col">
+        <table class="table-home">
+        <h4>Water Sinners</h4>
+          <tr>
+            <th>User Name</th>
+            <th>Plants to water today</th>
+          </tr>
+        <% @worst.each do |worst| %>
+          <tr>
+            <td><%= worst[:user_name] %></td> 
+            <td><%= worst[:dead_plants] %> plants to water today!</td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+    </div>
+  <% else %>
   <h3>Services We Provide</h3>
   <ul>
     <li>Water updates for your plants</li>
@@ -14,5 +114,8 @@
     <li>A one stop location for all your plants! no limit to how many plants we'll track for you</li>
     <li>Aggressive social media accountability</li>
     <li>Authentication for your account, don't let crooks lie about the plants you're watering</li>
+    <li>Daily leaderboards for tracking who needs to and who has watered their plants</li>
   </ul>
+  <% end%>
 </div>
+

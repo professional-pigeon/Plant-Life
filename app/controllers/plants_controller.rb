@@ -78,12 +78,12 @@ class PlantsController < ApplicationController
         redirect_to plant_path
       else
         @user = current_user
-        flash[:notice] = "Update failed. Please try again"
+        flash[:notice] = "Update failed. Please try again!"
         render :edit
       end
     else
       @user = current_user
-      flash[:notice] = "Hey Stop Trying to update your friends plants"
+      flash[:notice] = "Hey! Stop Trying to update your friends' plants!"
       redirect_to users_profile_path
     end
   end

@@ -15,8 +15,8 @@
 
 @import "bootstrap";
 @import "simple_calendar";
-// @import "font-awesome-sprockets";
-// @import "font-awesome";
+ // @import "font-awesome-sprockets";
+ // @import "font-awesome";
 
 .avatar {
   vertical-align: middle;
@@ -63,7 +63,22 @@ body {
   a:link {
     color: #fff;
   }
+  a:hover {
+    color: rgba(255, 255, 255, 0.253);
+  }
+  a:visited {
+    color: rgba(255, 255, 255, 0.603);
+  }
 }
+
+.card-winners > .card-body{
+  background: #DDC1B5;
+  color: black;
+}
+
+.card-winners > ul >li:nth-child(even){background-color: #edbfa6;}
+
+.card-winners > ul > li:nth-child(odd){background-color: #88c6a1;}
 
 .card-img-top {
   width: 100%;
@@ -74,11 +89,12 @@ body {
 
 .col-4 {
   text-align: center;
-  img {
-    min-height: 100%;
-  }
 }
-
+.user_pic {
+  min-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
 .col-8 {
   text-align: right;
 }
@@ -86,7 +102,9 @@ body {
 content {
   flex: 1 0 auto;
 }
-
+#flash_alerts {
+  margin-left: 10%;
+}
 footer {
   border-top: solid #716931 .25rem;
   margin-top: 1px;
@@ -98,7 +116,6 @@ footer {
   display: block;
   flex-shrink: 0;
 }
-
 #home-container {
   display: table;
   margin-top: 10%;
@@ -124,6 +141,16 @@ footer {
 #home-container > ul > li {
   display: list-item;
   list-style-type: circle;
+}
+
+#home-table-row {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+#inbox {
+  margin-top: 1em;
+  
 }
 
 nav {
@@ -172,6 +199,23 @@ nav ul {
   margin-bottom: 1em;
 }
 
+#profile_page {
+  margin-left: 5%;
+  margin-top: 5%;
+  img {
+    border: solid black 2px;
+    border-radius: 5px;
+  }
+  .col-8 {
+    text-align: left;
+  }
+}
+
+#profile_pic {
+  width:100%;
+  padding: 20%;
+}
+
 .retro-container {
   border-style: solid 2px black;
 }
@@ -181,6 +225,11 @@ nav ul {
   overflow-y: auto;
   overflow-x: hidden;
   vertical-align: top;
+}
+
+.sidebar_icon {
+width: 80%;
+padding: 20%;
 }
 
 .table > thead {
@@ -198,6 +247,41 @@ table > tbody .future {
 table > tbody .today {
   background:#DDC1B5 !important;
 }
+
+.table-home {
+border-collapse: collapse;
+max-width: 35vw;
+box-shadow: 0 0 5px 0;
+}
+
+.table-home td, .table-home th {
+border: 1px solid #344a39;
+padding: 8px;
+}
+.table-home th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #DDC1B5;
+color: black;
+}
+
+.table-home h4 {
+  text-align: center;
+}
+
+.table-home tr:nth-child(even){background-color: #edbfa6;}
+
+.table-home tr:nth-child(odd){background-color: #88c6a1;}
+
+.table-home tr:hover {background-color: #DDC1B5;}
+
+#user_profile_garden {
+  background-color: rgb(22, 240, 229);
+}
+#user_profile_page {
+  background-color: #88c6a1;
+}
 .user_pic {
   img {
     min-width: 100%;
@@ -207,6 +291,10 @@ table > tbody .today {
 
 #water-card button, [type="button"], [type="reset"], [type="submit"] {
   background: #e9d1c5;
+}
+
+#water-heading {
+  text-align: center;
 }
 
 .form-control{
@@ -275,7 +363,9 @@ table > tbody .today {
   height: 75px;
   width: 350px;
 }
-
+.p-winners{
+// text-align: center;
+}
 #paginate {
   align-items: right;
 }
@@ -496,29 +586,110 @@ label[for="ham-menu"] {
   }
 }
 
-#profile_sidebar{
+ #profile_sidebar{
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVYr5hZ5Ca-5700qLGTYP_s1R1AipA8KudQ&usqp=CAU");
-  background-repeat: repeat-x;
-  background-position: bottom;
+  //  background: image-url("fence.jpg");
+  //  background-image: url("/assets/images/fence.jpg");
+  //  background-image: url(/assets/fence.jpg);
+  // background: url( asset-path('fence.jpg') ) no-repeat;
+   background-repeat: repeat-x;
+   background-position: bottom;
+   border-radius: 5px;
+   background-color: white;
+   min-height:100%;
+   box-shadow: 0 0 5px 0;
+   margin-top: 15px;
+ }
+ 
+ #plant_row{
+   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVYr5hZ5Ca-5700qLGTYP_s1R1AipA8KudQ&usqp=CAU");
+   background-repeat: repeat-x;
+   background-position: bottom;
+   border-radius: 5px;
+   background-color: white;
+   height:115vh;
+   box-shadow: 0 0 5px 0;
+   margin-left: 20px;
+  //  min-height: 100%;
+ }
+ 
+ #weather_row{
   border-radius: 5px;
   background-color: white;
-  height:1095px;
-  box-shadow: 0 0 5px 0;
-}
-
-#plant_row{
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVYr5hZ5Ca-5700qLGTYP_s1R1AipA8KudQ&usqp=CAU");
-  background-repeat: repeat-x;
-  background-position: bottom;
-  border-radius: 5px;
-  background-color: white;
-  height:1000px;
-  box-shadow: 0 0 5px 0;
   margin-left: 20px;
-  overflow: scroll;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  box-shadow: 0 0 5px 0;
+ }
+
+ #profile_pic {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border: 10px solid whitesmoke;
+  display: inline-block;
+  box-shadow: 0 0 5px 0;
 }
 
-// #plantindex_header{
-//  background-color: #e9d1c5; 
-// }
+#profile_row{
+  background-color: #e9d1c5;
+  padding-bottom: 10%;
+}
 
+.col-container{
+  max-height: 150vh;
+}
+
+.col-md-9{
+  min-height: 100%;
+}
+
+.friends {
+  text-decoration: underline;
+}
+
+#friend-column {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.friend-card {
+  flex: 0 1 calc(25% - 1em);
+  height: 150px;
+}
+
+.profile-body {
+  background-color: rgb(219, 200, 204);
+  color: black;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.wave {
+  animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+}
+
+#f-select{
+  height: 75px;
+  margin-top: 15px;
+  width: 350px;
+  margin-left: 25px;
+}
+ 

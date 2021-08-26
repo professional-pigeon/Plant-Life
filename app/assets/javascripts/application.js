@@ -28,3 +28,7 @@ import "chartkick/chart.js";
 // modal logic
 $("#modal-window").find(".modal-content").html("<%= j (render 'sample_index') %>");
 $("#modal-window").modal();
+
+setTimeout(function() {
+  $('.alert').fadeOut();
+}, 5000);

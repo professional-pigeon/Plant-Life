@@ -1,71 +1,53 @@
-# README
+# PROJECT NAME 
+## By Adrian Camacho :electric_plug:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+### Project Description :pencil:
 
-* Ruby version
+* PROJECT DESCRIPTION 
+---
+### Tech Stack :floppy_disk:
+1. _Ruby 2.6.3_
+2. _Rails 6.1.4_
+3. _Node.js_
+4. _Ruby gems_
+5. _HTML_
+6. _Bootstrap_
+7. _scss_
+8. _sass_
+---
+### Installation Instructions :pushpin:
+1. Clone this repo: `https://github.com/chonnessey/repo.git`
+2. Enter new directory `cd directory`
+3. Install dependencies with the `bundle` command.
+4. To run the Rails local server run the command `rails s` and then navigate to `localhost:3000`.
+---
+### Known Bugs :bug:
+1. No Known Bugs.
+2. Please open a pull request if you have any issues!
+---
+### Test Suite/Specification :chart_with_upwards_trend:
 
-* System dependencies
+> See [spec folder](https://github.com/chonnessey/words/tree/main/spec) for rspec test suite which includes 23 passing tests. View test results from project directory by running `rspec`.
+---
+### Contact Info :inbox_tray:
 
-* Configuration
+You can reach me at: <adriancamacho18@gmail.com> :rocket:
+___
+### License is GPLv3 and I make no claim to copyright. :guardsman:
+<br />
 
-* Database creation
+> You can't steal what is freely given. Enjoy!
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<br />
+<br />
+<br />
+<br />
+<p align="center">
+  <small>Made in Portland, Oregon.</small>
+</p>
 
 Co-authored-by: Ben Pawlik <james.benjamin.pawlik@gmail.com>
 co-authored-by: Adrian Camacho <adriancamacho18@gmail.com>
 co-authored-by: Araceli Valdovinos <valdovinosaraceli50@gmail.com>
-
-Time math:
-
-water_time = Time.now.to_i + (time interval to next watering || water_wait)
-calendar_date = Time.strptime(water_time.to_s, '%s')
-
-a day in epoch is 86400
-
-other methods to know
-beginning_of_hour
-beginning_of_day
-
-Time.now.beginning_of_day = 2021-08-24 00:00:00 -0700 (time stamp that can be compared to another time stamp)
-
-How to add watering schedule:
-  - add column water_time to plants DONE
-  - add a method to determine water_wait depending on type of plant DONE
-  - add time logic for comparing timestamps DONE
-  - update a watering time by selecting Plant watered or some such
-  - add new timestamp to calendar
-
-* Need to do gem install mailcatcher to view emails 
-
-  <%#
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">OK Bloomer</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <div style="margin-left:auto;">
-              <% if current_user %>
-              <%#
-                <span class="nav-link"><%= link_to image_tag("#{Faker::Avatar.image}"), '/users/profile' %> | <%= link_to current_user.email , '/users/edit' %> | <%= link_to 'Messages', '/messages' %> | <%=link_to 'Your Plants', plants_path %> | <%= link_to "Sign out", '/users/sign_out', :method => :delete %></span>
-              <%#<% else %>
-                <span class="nav-link"><%= link_to "Sign up", '/users/sign_up'%> | <%= link_to "Sign in", '/users/sign_in' %></span>
-              <%#<% end %>
-            <%#</div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  %>

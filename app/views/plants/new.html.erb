@@ -1,7 +1,11 @@
-<div class="container">
-  <h1>Add a New Plant:</h1>
-  <br>
-  <%= render "layouts/plant_form", :object => @plant %>
-  <br>
-  <h1><%= link_to "Return to Plants", plants_path %></h1>
+<div class="mx-auto text-center" style="width:30%" id="formOne">
+  <div class="col p-4" id="confirmation_form"
+    <div class="container">
+      <h1>Add a New Plant:</h1>
+      <br>
+      <%= render "layouts/plant_form", :object => @plant %>
+      <br>
+      <h1><%= link_to "Return to Plants", plants_path %></h1>
+    </div>
+  </div>
 </div>

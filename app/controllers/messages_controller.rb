@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
      @message = current_user.sent_messages.new message_params
      @message.recipient_id = @recipient.id
      @message.save
+     redirect_to  "/users/#{@message.recipient_id}"
   end
 
   def index
@@ -32,6 +33,5 @@ class MessagesController < ApplicationController
 
   def set_recipient
    @recipient = User.find params[:user_id]
-   # debugger
   end
 end

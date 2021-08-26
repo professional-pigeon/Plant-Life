@@ -1,12 +1,15 @@
-<div class="row">
-     <div class="col-6">
-          <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
+<div class="container">
+     <div class="row">
+          <div class="col-6">
+               <img src='<%= "#{Faker::LoremFlickr.image(search_terms: [@user.username])}" %>' >
+          </div>
+          <div class="col-6">
+               <h1><%= @recipient.username %></h1>
+               <%= form_for(@message, url: "/users/#{params[:user_id]}/messages") do |f| %>
+                    <%= f.text_area :content, placeholder: 'Your message', required: true %>
+               <%= f.submit "Send Message" %>
+               <% end %>
+          </div>
      </div>
-     <div class="col-6">
-          <h1><%= @recipient.username %></h1>
-          <%= form_for(@message, url: "/users/#{params[:user_id]}/messages") do |f| %>
-               <%= f.text_area :content, placeholder: 'Your message' %>
-          <%= f.submit "Send Message" %>
-          <% end %>
-     </div>
+     <h3><%= link_to @user.username, "/users/#{@user.id}" %></h3>
 </div>
